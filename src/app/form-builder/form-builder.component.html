@@ -1,0 +1,57 @@
+<!--<form [formGroup]="formControlers" (ngSubmit)="send()">-->
+
+<!--  <ng-template #recursiveList let-controls let-prefix="prefix">-->
+<!--    <pre style="background-color: azure; min-width: 200px; min-height: 300px ">{{controls| json}}</pre>?-->
+<!--    <ng-container *ngFor="let field of controls | keyvalue; let i = index">-->
+<!--      !!-->
+<!--      <pre>{{field.key| json}}</pre>-->
+<!--      <app-form-section [field]="field" formControlName="{{field.key}}"></app-form-section>-->
+
+
+<!--    </ng-container>-->
+<!--  </ng-template>-->
+
+<!--  <ng-container [ngTemplateOutlet]="recursiveList"-->
+<!--    [ngTemplateOutletContext]="{ controls: formControlers.value.controls.officerURL, prefix: 'element.' }"></ng-container>-->
+
+<!--  <button mat-button type="submit">Send</button>-->
+<!--</form>-->
+
+<form [formGroup]="formControllers" (ngSubmit)="send()">
+  <ng-container [ngTemplateOutlet]="recursiveForm"
+                [ngTemplateOutletContext]="{ controls: formScheme, prefix: 'prefix'}"></ng-container>
+
+  <button mat-button type="submit">Send</button>
+</form>
+
+<ng-template #recursiveForm let-controls="controls" let-prefix="prefix">
+  <ng-container *ngFor="let field of controls | keyvalue; let i = index">
+    <div class="sub-tree" *ngIf="isObject(field.value)">
+      <ng-container [ngTemplateOutlet]="recursiveForm"
+                    [ngTemplateOutletContext]="{ controls: field.controls, prefix: prefix + field.key}"></ng-container>
+    </div>
+
+    <ng-container *ngIf="!isObject(field.value)" [ngTemplateOutlet]="inputField"
+                  [ngTemplateOutletContext]=""></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #inputField let-field="field">
+  {{log(field)}}
+
+  <mat-form-field>
+    <mat-label>{{field.key}}</mat-label>
+    <input *ngIf="['String','Number','Date'].includes(field.value.type)"
+           [type]="field.value.type.toLowerCase()" matInput formControlName="{{field.key}}">
+
+    <mat-select *ngIf="field.value.type === 'Enum'" formControlName="{{field.key}}">
+      <mat-option *ngFor="let value of field.value.enumValues" [value]="value">{{value}}</mat-option>
+    </mat-select>
+
+    <!--    <checkbox *ngIf="field.value.type === 'Boolean'" [formControlName]="field.key">{{field.key}}</checkbox>-->
+
+    <input *ngIf="!['Date','String', 'Enum', 'Number', 'Boolean'].includes(field.value.type)"
+           [placeholder]="'errrorrrrr'" matInput formControlName="{{field.key}}">
+
+  </mat-form-field>
+</ng-template>

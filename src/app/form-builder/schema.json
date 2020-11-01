@@ -1,0 +1,32 @@
+{
+  "succeeded": true,
+  "result": {
+    "type": "OFFICER",
+    "scheme": {
+      "officerURL": "{\"type\":\"String\",\"require\":true}",
+      "name": {
+        "full": "{\"type\":\"String\"}"
+      },
+      "employment": {
+        "jobTitle": "{\"type\":\"String\"}",
+        "company": "{\"type\":\"String\"}",
+        "startDate": "{\"type\":\"Date\"}",
+        "relationType": "{\"type\":\"Enum\",\"enumValues\":[\"OTHER_ACTIVITY\",\"RELATED\",\"TOP_EXECUTIVE\",\"ADVISORY_BOARD\",\"EMPLOYEE\",\"BOARD\",\"INVESTOR\",\"OWNER\"]}",
+        "status": "{\"type\":\"Enum\",\"enumValues\":[\"Active\",\"InActive\"]}",
+        "statusInSource": "{\"type\":\"Enum\",\"enumValues\":[\"Deleted\"]}",
+        "endDate": "{\"type\":\"Date\"}",
+        "verificationStatus": "{\"type\":\"Enum\",\"enumValues\":[\"COULDNT_VERIFY\",\"NOT_VERIFIED\",\"VERIFIED\",\"PENDING\",\"NOT_CHECKED\"]}",
+        "verificationInformation": "{\"type\":\"Enum\",\"enumValues\":[\"unable to verify information outside of USA\",\"verified through corporate records\",\"Verified through online sources\",\"verified through SEC file\",\"verified through company website\",\"unable to verify through public records\"]}",
+        "isMainEmployment": "{\"type\":\"Boolean\",\"value\":false}"
+      },
+      "originalSourceName": "{\"type\":\"String\",\"require\":true}",
+      "ownership": {
+        "updatedAt": "{\"type\":\"Date\"}"
+      },
+      "description": "{\"type\":\"String\"}",
+      "picture": "{\"type\":\"String\"}",
+      "directOwnership": "{\"type\":\"String\"}",
+      "indirectOwnership": "{\"type\":\"String\"}"
+    }
+  }
+}
