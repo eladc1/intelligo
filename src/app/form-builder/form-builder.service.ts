@@ -10,7 +10,7 @@ import {SchemaOption} from '../types';
 })
 export class FormBuilderService {
     public currentScheme = [];
-    public currentFormType = [];
+    public currentFormType = '';
 
     constructor(private http: HttpClient) {
         this.currentScheme = this.cleanSchema(Scheme.result.scheme);

@@ -12,11 +12,14 @@ export class FormBuilderComponent implements OnInit {
     public genericFormGroup: FormGroup;
     public formScheme: Array<SchemaOption>;
     public flatScheme: Array<SchemaOption>;
+    public formType: string;
 
     constructor(private fb: FormBuilder, private fbService: FormBuilderService) {
     }
 
     ngOnInit(): void {
+        this.formType = this.fbService.currentFormType;
+
         this.formScheme = this.fbService.currentScheme;
         this.flatScheme = this.formScheme.flat(Infinity);
         this.genericFormGroup = this.generateFormControl(this.flatScheme);

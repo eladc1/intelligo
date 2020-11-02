@@ -12,11 +12,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+import { HeaderComponent } from './layout/header/header.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
     declarations: [
         AppComponent,
-        FormBuilderComponent
+        FormBuilderComponent,
+        HeaderComponent
     ],
     imports: [
         CommonModule,
@@ -26,9 +30,11 @@ import {HttpClientModule} from '@angular/common/http';
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
+        MatCardModule,
         MatButtonModule,
         MatCheckboxModule,
         NoopAnimationsModule,
+        MatToolbarModule,
         FormsModule
     ],
     providers: [],

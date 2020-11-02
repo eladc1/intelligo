@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
-html, body { height: 100%; }
+html, body { height: 100vh;  overflow: hidden}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//
+//*:not(head) {
+//    border: 1px solid #f00 !important;
+//    opacity: 1 !important;
+//    visibility: visible !important;
+//}

@@ -1,0 +1,10 @@
+:host {
+    main {
+        height: calc(100vh - 64px);
+        overflow-y: scroll;
+        display: flex;
+        justify-content: center;
+
+        padding-top: 15px;
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "stylePreprocessorOptions": {
+        "includePaths": [
+            "../src/styles.scss"
+        ]
+    }
+}

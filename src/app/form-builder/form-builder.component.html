@@ -1,14 +1,18 @@
-<form [formGroup]="genericFormGroup" (ngSubmit)="send()">
-    <ng-container *ngFor="let field of flatScheme; let i = index">
-        <mat-form-field>
-            <mat-label>{{field.key}}</mat-label>
-            <input *ngIf="field.ui.isInput" [type]="field.type" matInput formControlName="{{field.key}}">
+<mat-card class="form-card">
+    <h2>{{formType}}</h2>
 
-            <mat-select *ngIf="field.type === 'enum'" formControlName="{{field.key}}">
-                <mat-option *ngFor="let value of field.enumValues" [value]="value">{{value}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </ng-container>
+    <form [formGroup]="genericFormGroup" (ngSubmit)="send()">
+            <ng-container *ngFor="let field of flatScheme; let i = index">
+                <mat-form-field>
+                    <mat-label>{{field.key}}</mat-label>
+                    <input *ngIf="field.ui.isInput" [type]="field.type" matInput formControlName="{{field.key}}">
 
-    <button mat-button type="submit">Send</button>
-</form>
+                    <mat-select *ngIf="field.type === 'enum'" formControlName="{{field.key}}">
+                        <mat-option *ngFor="let value of field.enumValues" [value]="value">{{value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-container>
+
+            <button class="submit" mat-raised-button color="primary" type="submit"><i class="fas fa-camera"></i>Send</button>
+        </form>
+</mat-card>
