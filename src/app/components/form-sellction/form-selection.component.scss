@@ -39,6 +39,15 @@
                 align-items: center;
                 font-size: calc(1vw + 1em);
             }
+
+            @media screen and (max-width: 700px) {
+                width: 40vw;
+                height: 40vw;
+
+                span{
+                    font-size: calc(2vw + 1em);
+                }
+            }
         }
     }
 }
