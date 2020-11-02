@@ -1,4 +1,7 @@
 <app-header></app-header>
 <main>
-    <app-form-builder></app-form-builder>
+    <div class="container">
+        <mat-spinner *ngIf="loading" [mode]="'indeterminate'"></mat-spinner>
+        <router-outlet *ngIf="!loading"></router-outlet>
+    </div>
 </main>

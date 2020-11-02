@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormBuilderService} from './form-builder.service';
-import {SchemaOption} from '../types';
+import {SchemaOption} from '../../types';
+import {ActivatedRoute} from '@angular/router';
+import {FormSelectionService} from '../form-sellction/form-selection.service';
 
 @Component({
     selector: 'app-form-builder',
@@ -14,16 +16,17 @@ export class FormBuilderComponent implements OnInit {
     public flatScheme: Array<SchemaOption>;
     public formType: string;
 
-    constructor(private fb: FormBuilder, private fbService: FormBuilderService) {
+    constructor(private fb: FormBuilder,
+                private fbService: FormBuilderService,
+                private formSelectSrv: FormSelectionService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.formType = this.fbService.currentFormType;
-
-        this.formScheme = this.fbService.currentScheme;
+        this.formScheme = this.route.snapshot.data.schemeTypes?.scheme;
+        this.formType = this.formSelectSrv.schemeDictionary[this.route.snapshot.data.schemeTypes?.type];
         this.flatScheme = this.formScheme.flat(Infinity);
         this.genericFormGroup = this.generateFormControl(this.flatScheme);
-
     }
 
     public log(val): void {

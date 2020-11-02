@@ -6,6 +6,10 @@ mat-toolbar {
     display: flex;
     justify-content: space-between;
 
+    a {
+        cursor: pointer;
+    }
+
     .action-icons{
         i {
             font-size: 20px;

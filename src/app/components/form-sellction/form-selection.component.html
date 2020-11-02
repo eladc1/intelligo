@@ -1,0 +1,4 @@
+<div class="select-form" *ngFor="let option of availableSchemes"
+     [routerLink]="['form/' + option.type ]">
+    <span>{{option.display}}</span>
+</div>

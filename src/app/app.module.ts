@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormBuilderComponent} from './form-builder/form-builder.component';
+import {FormBuilderComponent} from './components/form-builder/form-builder.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -15,19 +15,27 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './layout/header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { AppRoutingModule } from './app-routing.module';
+import { FormSelectionComponent } from './components/form-sellction/form-selection.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {SchemeResolver} from './components/form-builder/scheme.resolver';
 
 @NgModule({
     declarations: [
         AppComponent,
         FormBuilderComponent,
-        HeaderComponent
+        HeaderComponent,
+        FormSelectionComponent
     ],
     imports: [
         CommonModule,
         HttpClientModule,
         BrowserModule,
+        MatGridListModule,
         ReactiveFormsModule,
         MatFormFieldModule,
+        MatProgressSpinnerModule,
         MatSelectModule,
         MatInputModule,
         MatCardModule,
@@ -35,10 +43,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         MatCheckboxModule,
         NoopAnimationsModule,
         MatToolbarModule,
-        FormsModule
+        FormsModule,
+        AppRoutingModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [SchemeResolver]
 })
 export class AppModule {
 }
