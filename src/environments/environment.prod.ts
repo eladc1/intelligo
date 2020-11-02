@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    schemeApiUrl: 'https://clarityapi.intelligo.ai/api/v1'
 };

@@ -20,13 +20,15 @@ import { FormSelectionComponent } from './components/form-sellction/form-selecti
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SchemeResolver} from './components/form-builder/scheme.resolver';
+import { LoaderComponent } from './miniComponents/loader/loader.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FormBuilderComponent,
         HeaderComponent,
-        FormSelectionComponent
+        FormSelectionComponent,
+        LoaderComponent
     ],
     imports: [
         CommonModule,

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {KeyValue, TypeOfSchema} from '../../types';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class FormSelectionService {
         if (this.schemeListCache) {
             return  Promise.resolve(this.schemeListCache);
         }
-        const result: any = await this.http.get('https://clarityapi.intelligo.ai/api/v1/schemas/list').toPromise();
+        const result: any = await this.http.get(`${environment.schemeApiUrl}/schemas/list`).toPromise();
         this.schemeDictionary = this.cleanSchemeListAsDictionary(result.result.schemasList);
         this.schemeListCache = result.result.schemasList;
         return result.result.schemasList;

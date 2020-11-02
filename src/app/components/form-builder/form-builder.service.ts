@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {isObject as _isObject} from 'lodash';
 import {HttpClient} from '@angular/common/http';
-import {SchemaOption, SchemaOptionsReq} from '../../types';
+import {SchemaOption, SchemaOptionsReq, TypeOfSchema} from '../../types';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -9,14 +10,22 @@ import {SchemaOption, SchemaOptionsReq} from '../../types';
 export class FormBuilderService {
     public currentScheme = [];
     public currentFormType = '';
+    public schemesCache = {};
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     public async getScheme(schemeType: string): Promise<any> {
-        const response = await this.http.get<SchemaOptionsReq>(`https://clarityapi.intelligo.ai/api/v1/schemas/${schemeType}`).toPromise();
+        if (this.schemesCache[schemeType]) {
+            return Promise.resolve(this.schemesCache[schemeType]);
+        }
+        const response = await this.http.get<SchemaOptionsReq>(`${environment.schemeApiUrl}/schemas/${schemeType}`).toPromise();
         this.currentScheme = this.cleanSchema(response.result.scheme);
         this.currentFormType = response.result.type;
-        return {scheme: this.currentScheme, type: response.result.type};
+
+        this.schemesCache[schemeType] = {scheme: this.currentScheme, type: response.result.type};
+
+        return this.schemesCache[schemeType];
     }
 
     private cleanSchema(dirtyScheme, indent = 0): SchemaOption[] {
