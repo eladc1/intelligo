@@ -1,19 +1,31 @@
 <mat-card class="form-card">
-    <h2>{{formType}}</h2>
+    <h2>{{displayFormType}}</h2>
 
     <form [formGroup]="genericFormGroup" (ngSubmit)="send()">
-            <ng-container *ngFor="let field of flatScheme; let i = index">
-                <h3 *ngIf="field.ui?.title"  [ngStyle]="{'padding-left.px': (field.ui.indent -1) * 25}">{{field.ui.title | titlecase}}</h3>
-                <mat-form-field [ngStyle]="{'padding-left.px': field.ui.indent * 25}">
-                    <mat-label>{{field.key}}</mat-label>
-                    <input *ngIf="field.ui.isInput" [type]="field.type" matInput formControlName="{{field.key}}">
+        <ng-container *ngFor="let field of flatScheme; let i = index">
+            <h3 *ngIf="field.ui?.title"
+                [ngStyle]="{'padding-left.px': (field.ui.indent -1) * 25}">{{field.ui.title | titlecase}}</h3>
+            <mat-form-field *ngIf="field.type !== 'boolean'" [ngStyle]="{'padding-left.px': field.ui.indent * 25}">
+                <mat-label>{{field.key}}</mat-label>
+                <input *ngIf="field.ui.isInput" [required]="field.require" [type]="field.type" matInput
+                       formControlName="{{field.key}}">
 
-                    <mat-select *ngIf="field.type === 'enum'" formControlName="{{field.key}}">
-                        <mat-option *ngFor="let value of field.enumValues" [value]="value">{{value}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </ng-container>
+                <mat-select *ngIf="field.type === 'enum'" [required]="field.require"
+                            formControlName="{{field.key}}">
+                    <mat-option *ngFor="let value of field.enumValues" [value]="value">{{value}}</mat-option>
+                </mat-select>
 
-            <button class="submit" mat-raised-button color="primary" type="submit">Send</button>
-        </form>
+                <mat-error *ngIf="genericFormGroup.get(field.key).invalid">
+                    <span *ngIf="genericFormGroup.get(field.key).hasError('required')">
+                        {{field.key}} is <strong>required</strong></span>
+                    <span *ngIf="!genericFormGroup.get(field.key).hasError('required')">
+                        Please enter a valid {{field.type}}</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-checkbox *ngIf="field.type === 'boolean'" [required]=" field.require" [ngStyle]="{'padding-left.px': field.ui.indent * 25}"
+                          formControlName="{{field.key}}" [value]="field.value">{{field.key}}</mat-checkbox>
+        </ng-container>
+
+        <button class="submit" mat-raised-button color="primary" type="submit">Send</button>
+    </form>
 </mat-card>

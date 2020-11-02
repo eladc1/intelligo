@@ -12,15 +12,23 @@ export class FormSelectionService {
     public schemeListCache: TypeOfSchema[];
     public schemeDictionary: KeyValue;
 
-    constructor(private http: HttpClient, private dialog: MatDialog ) {
+    constructor(private http: HttpClient, private dialog: MatDialog) {
+    }
+
+    public async sendForm(type: string, data: any): Promise<any> {
+        const reqBody = {
+            type,
+            form: data
+        };
+        return this.http.post(`${environment.schemeApiUrl}/schemas/submit`, reqBody).toPromise();
     }
 
     public async getSchemesList(): Promise<TypeOfSchema[]> {
         if (this.schemeListCache) {
-            return  Promise.resolve(this.schemeListCache);
+            return Promise.resolve(this.schemeListCache);
         }
         const result: any = await this.http.get(`${environment.schemeApiUrl}/schemas/list`)
-            .toPromise().catch( err => {
+            .toPromise().catch(() => {
                 this.dialog.open(DialogComponent, {
                     data: {
                         type: 'error',
@@ -33,7 +41,7 @@ export class FormSelectionService {
         return result.result.schemasList;
     }
 
-    private cleanSchemeListAsDictionary(schemeList): KeyValue{
+    private cleanSchemeListAsDictionary(schemeList): KeyValue {
         const dictionary = {};
         schemeList.forEach(i => dictionary[i.type] = i.display);
         return dictionary;

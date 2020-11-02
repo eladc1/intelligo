@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {isObject as _isObject} from 'lodash';
 import {HttpClient} from '@angular/common/http';
-import {SchemaOption, SchemaOptionsReq, TypeOfSchema} from '../../types';
+import {SchemaOption, SchemaOptionsReq} from '../../types';
 import {environment} from '../../../environments/environment';
 import {DialogComponent} from '../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
@@ -14,7 +14,7 @@ export class FormBuilderService {
     public currentFormType = '';
     public schemesCache = {};
 
-    constructor(private http: HttpClient, private dialog: MatDialog ) {
+    constructor(private http: HttpClient, private dialog: MatDialog) {
     }
 
     public async getScheme(schemeType: string): Promise<any> {
@@ -22,7 +22,7 @@ export class FormBuilderService {
             return Promise.resolve(this.schemesCache[schemeType]);
         }
         const response: any = await this.http.get<SchemaOptionsReq>(`${environment.schemeApiUrl}/schemas/${schemeType}`)
-            .toPromise().catch( err => {
+            .toPromise().catch(() => {
                 this.dialog.open(DialogComponent, {
                     data: {
                         type: 'error',
@@ -56,7 +56,7 @@ export class FormBuilderService {
                 fieldObj.type = fieldObj.type.toLowerCase();
                 fieldObj.ui = {
                     indent,
-                    isInput: ['string', 'date', 'number', 'boolean'].includes(fieldObj.type)
+                    isInput: ['string', 'date', 'number'].includes(fieldObj.type)
                 };
                 cleanScheme.push(fieldObj);
             }
