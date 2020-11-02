@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {isObject as _isObject} from 'lodash';
 import {HttpClient} from '@angular/common/http';
 import {SchemaOption, SchemaOptionsReq} from '../../types';
 import {environment} from '../../../environments/environment';
 import {DialogComponent} from '../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {isObject} from '../../utils/utils';
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +42,7 @@ export class FormBuilderService {
         const cleanScheme = [];
 
         Object.keys(dirtyScheme).forEach((key) => {
-            if (_isObject(dirtyScheme[key])) {
+            if (isObject(dirtyScheme[key])) {
                 const result = this.cleanSchema(dirtyScheme[key], indent + 1);
                 if (result[0].ui) {
                     result[0].ui.title = key;
@@ -51,14 +51,21 @@ export class FormBuilderService {
                 }
                 cleanScheme.push(result);
             } else {
-                const fieldObj: SchemaOption = JSON.parse(dirtyScheme[key]);
-                fieldObj.key = key;
-                fieldObj.type = fieldObj.type.toLowerCase();
-                fieldObj.ui = {
-                    indent,
-                    isInput: ['string', 'date', 'number'].includes(fieldObj.type)
-                };
-                cleanScheme.push(fieldObj);
+                try {
+                    const fieldObj: SchemaOption = JSON.parse(dirtyScheme[key]);
+                    fieldObj.key = key;
+                    fieldObj.type = fieldObj.type.toLowerCase();
+                    fieldObj.ui = {
+                        indent,
+                        isInput: ['string', 'date', 'number'].includes(fieldObj.type)
+                    };
+                    cleanScheme.push(fieldObj);
+                } catch (err){
+                    // error 'handling'
+                    console.error(err);
+                    // To kill the app
+                    throw(err);
+                }
             }
         });
         return cleanScheme;

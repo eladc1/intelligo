@@ -6,7 +6,6 @@ import {FormBuilderComponent} from './components/form-builder/form-builder.compo
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -17,8 +16,6 @@ import {HeaderComponent} from './layout/header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from './app-routing.module';
 import {FormSelectionComponent} from './components/form-sellction/form-selection.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SchemeResolver} from './components/form-builder/scheme.resolver';
 import {LoaderComponent} from './components/loader/loader.component';
 import {DialogComponent} from './components/dialog/dialog.component';
@@ -38,16 +35,13 @@ import {MatDialogModule} from '@angular/material/dialog';
         HttpClientModule,
         BrowserModule,
         MatDialogModule,
-        MatGridListModule,
         ReactiveFormsModule,
         MatFormFieldModule,
-        MatProgressSpinnerModule,
         MatSelectModule,
         MatInputModule,
         MatCardModule,
         MatButtonModule,
         MatCheckboxModule,
-        NoopAnimationsModule,
         MatToolbarModule,
         FormsModule,
         AppRoutingModule

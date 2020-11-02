@@ -14,7 +14,7 @@ Project features:
 4. All the schemes are cached and save unneeded http requests.    
 5. The API url is saved as env variable, so we can control what API we are using in each env. 
 6. Separate file for ts types, for smaller bundle & bandwidth.
-7. Intelligo logo loader! 😊
+8. Intelligo logo loader! 😊
  
  
 What can be improved:

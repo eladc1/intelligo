@@ -36,12 +36,13 @@ export class FormSelectionService {
                     }
                 });
             });
-        this.schemeDictionary = this.cleanSchemeListAsDictionary(result.result.schemasList);
         this.schemeListCache = result.result.schemasList;
-        return result.result.schemasList;
+
+        this.schemeDictionary = this.convertSchemeToDictionary(this.schemeListCache);
+        return this.schemeListCache;
     }
 
-    private cleanSchemeListAsDictionary(schemeList): KeyValue {
+    private convertSchemeToDictionary(schemeList): KeyValue {
         const dictionary = {};
         schemeList.forEach(i => dictionary[i.type] = i.display);
         return dictionary;

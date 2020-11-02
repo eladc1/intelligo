@@ -15,6 +15,7 @@ export class DialogComponent implements OnInit {
     }
 
     onCloseClick(): void {
+        // from https://stackoverflow.com/a/59502797/8253018
         this.ngZone.run(() => {
             this.dialogRef.close();
         });
