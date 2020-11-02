@@ -19,6 +19,7 @@ import {FormSelectionComponent} from './components/form-sellction/form-selection
 import {SchemeResolver} from './components/form-builder/scheme.resolver';
 import {LoaderComponent} from './components/loader/loader.component';
 import {DialogComponent} from './components/dialog/dialog.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -32,6 +33,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
         DialogComponent
     ],
     imports: [
+        NoopAnimationsModule,
         CommonModule,
         HttpClientModule,
         BrowserModule,
