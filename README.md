@@ -1,9 +1,11 @@
-# Intelligo
+# Intelligo 💻
 
 
-To run this small home assignment you will have to:
- 1. Clone this project
- 2. Set up and run the app by running `npm run letsgo`.
+To run this home assignment you will have to:
+ 1. Clone this project `git clone https://github.com/eladc1/intelligo.git`.
+ 2. Cd into the project directory `cd intelligo`
+ 3. Set up and run the app `npm run letsgo`.
+ 4. Grab a cup of coffee. ☕
 
 Project features:
 1. All the assignment's requirements.
@@ -17,12 +19,16 @@ Project features:
  
 What can be improved:
 1. Tests.
-2. Better and detailed types (less 'any' all over the place).
-3. More generic helper components.
-4. Better input helper messages.
-5. More breaking point for better responsiveness.
-6. And as always, much more 😀.
+2. Better UI/UX.
+3. Better and detailed types (less 'any' all over the place).
+4. More generic helper components.
+5. Better input helper messages.
+6. More breaking point for better responsiveness.
+7. And as always, much more 😀.
 
+ 
+ A little tip, to fill out the form faster you can use this plugin:
+ https://chrome.google.com/webstore/detail/fake-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
  
  Thanks!
  Elad 👾
