@@ -13,14 +13,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
-import { HeaderComponent } from './layout/header/header.component';
+import {HeaderComponent} from './layout/header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { AppRoutingModule } from './app-routing.module';
-import { FormSelectionComponent } from './components/form-sellction/form-selection.component';
+import {AppRoutingModule} from './app-routing.module';
+import {FormSelectionComponent} from './components/form-sellction/form-selection.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SchemeResolver} from './components/form-builder/scheme.resolver';
-import { LoaderComponent } from './miniComponents/loader/loader.component';
+import {LoaderComponent} from './components/loader/loader.component';
+import {DialogComponent} from './components/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -28,12 +30,14 @@ import { LoaderComponent } from './miniComponents/loader/loader.component';
         FormBuilderComponent,
         HeaderComponent,
         FormSelectionComponent,
-        LoaderComponent
+        LoaderComponent,
+        DialogComponent
     ],
     imports: [
         CommonModule,
         HttpClientModule,
         BrowserModule,
+        MatDialogModule,
         MatGridListModule,
         ReactiveFormsModule,
         MatFormFieldModule,

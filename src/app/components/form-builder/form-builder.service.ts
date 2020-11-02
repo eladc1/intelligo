@@ -3,6 +3,8 @@ import {isObject as _isObject} from 'lodash';
 import {HttpClient} from '@angular/common/http';
 import {SchemaOption, SchemaOptionsReq, TypeOfSchema} from '../../types';
 import {environment} from '../../../environments/environment';
+import {DialogComponent} from '../dialog/dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root'
@@ -12,14 +14,22 @@ export class FormBuilderService {
     public currentFormType = '';
     public schemesCache = {};
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private dialog: MatDialog ) {
     }
 
     public async getScheme(schemeType: string): Promise<any> {
         if (this.schemesCache[schemeType]) {
             return Promise.resolve(this.schemesCache[schemeType]);
         }
-        const response = await this.http.get<SchemaOptionsReq>(`${environment.schemeApiUrl}/schemas/${schemeType}`).toPromise();
+        const response: any = await this.http.get<SchemaOptionsReq>(`${environment.schemeApiUrl}/schemas/${schemeType}`)
+            .toPromise().catch( err => {
+                this.dialog.open(DialogComponent, {
+                    data: {
+                        type: 'error',
+                        message: 'Sorry, failed to load the this scheme, please try again later.'
+                    }
+                });
+            });
         this.currentScheme = this.cleanSchema(response.result.scheme);
         this.currentFormType = response.result.type;
 
