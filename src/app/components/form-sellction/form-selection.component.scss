@@ -1,25 +1,44 @@
 :host {
-    display: flex;
-    justify-content: center;
+    h2 {
 
-    div.select-form{
-        width: 15vw;
-        height: 15vw;
-        background-color: #12a8c0;
-        border-radius: 100%;
         text-align: center;
-        color: white;
-        margin: 10px;
-        cursor: pointer;
+        font-size: 30px;
+        padding: 20px;
+    }
 
+    .circles {
         display: flex;
         justify-content: center;
-        align-content: center;
+        flex-wrap: wrap;
+        align-content: baseline;
 
-        span {
+        div.select-form {
+            box-sizing: border-box;
+            width: 14vw;
+            height: 14vw;
+            border: 15px solid #12a8c0;
+            border-radius: 100%;
+            text-align: center;
+            color: #12a8c0;
+            background-color: white;
+            margin: 10px 20px;
+            cursor: pointer;
+            outline: none;
+
             display: flex;
-            align-items: center;
-            font-size: calc( 1vw + 1em);
+            justify-content: center;
+            align-content: center;
+
+            &:hover {
+                border-color: #0a7a8c;
+                color: #0ea7bf;
+            }
+
+            span {
+                display: flex;
+                align-items: center;
+                font-size: calc(1vw + 1em);
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
-<div class="select-form" *ngFor="let option of availableSchemes"
-     [routerLink]="['form/' + option.type ]">
-    <span>{{option.display}}</span>
+<h2>Select the desired form</h2>
+<div class="circles">
+    <div class="select-form" *ngFor="let option of availableSchemes"
+         [routerLink]="['form/' + option.type ]">
+        <span>{{option.display}}</span>
+    </div>
+
+    <div class="select-form" [routerLink]="['form/fail' ]">
+        <span>FAIL END POINT</span>
+    </div>
 </div>
-
-<!--<div class="select-form" [routerLink]="['form/fail' ]">-->
-<!--    <span>FAIL END POINT</span>-->
-<!--</div>-->
-
