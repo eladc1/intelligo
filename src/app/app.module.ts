@@ -20,6 +20,7 @@ import {SchemeResolver} from './components/form-builder/scheme.resolver';
 import {LoaderComponent} from './components/loader/loader.component';
 import {DialogComponent} from './components/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatButtonModule,
         MatCheckboxModule,
         MatToolbarModule,
+        NoopAnimationsModule,
         FormsModule,
         AppRoutingModule
     ],
